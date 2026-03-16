@@ -6,125 +6,116 @@
   <title>Projects — Ravionics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
+    /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ── Design tokens from ravionics.nl ── */
     :root {
-      --dark:    #32373c;
-      --blue-lt: #c7deff;
-      --peach:   #ffd3c0;
-      --accent:  #005c99;
-      --accent2: #1414c9;
-      --white:   #ffffff;
-      --bg:      #f5f7fa;
-      --text:    #1a1a2e;
-      --muted:   #6b7280;
-      --border:  #e5eaf2;
-      --radius:  12px;
+      --blue:        #005c99;   /* accent2 — primary blue, nav bg, headings */
+      --navy:        #02426b;   /* accent1 — footer bg */
+      --orange:      #e17a00;   /* accent3 */
+      --dark:        #383838;   /* body text */
+      --light:       #e9e5e6;   /* page bg, light text on dark */
+      --white:       #ffffff;
+      --font-body:   'Nunito', sans-serif;
+      --font-head:   'Nunito Sans', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Nunito Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14px;
+      background: var(--light);
+      color: var(--dark);
       min-height: 100vh;
-      font-size: 16px;
       line-height: 1.6;
     }
 
     /* ── NAV ── */
     nav {
-      background: var(--dark);
-      padding: 0 40px;
+      background: var(--blue);
+      padding: 0 32px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
     .nav-logo {
-      font-family: 'Nunito', sans-serif;
+      font-family: var(--font-body);
+      font-size: 30px;
       font-weight: 800;
-      font-size: 1.3rem;
-      color: var(--white);
+      color: var(--light);
       text-decoration: none;
-      letter-spacing: -0.02em;
+      line-height: 1;
     }
 
-    .nav-logo span { color: var(--blue-lt); }
-
     .nav-links {
-      display: flex;
-      gap: 28px;
       list-style: none;
+      display: flex;
+      gap: 8px;
     }
 
     .nav-links a {
-      color: #ccc;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--light);
       text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 600;
-      transition: color 0.15s;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      transition: background 0.15s;
     }
 
-    .nav-links a:hover, .nav-links a.active { color: var(--white); }
-
-    .nav-links a.active {
-      color: var(--blue-lt);
-      border-bottom: 2px solid var(--blue-lt);
-      padding-bottom: 2px;
-    }
+    .nav-links a:hover { background: rgba(233,229,230,0.15); }
+    .nav-links a.active { background: rgba(233,229,230,0.15); font-weight: 700; }
 
     /* ── HERO ── */
     .hero {
-      background: var(--dark);
-      padding: 64px 40px 56px;
+      background: var(--blue);
+      color: var(--light);
+      padding: 56px 40px 48px;
       text-align: center;
     }
 
     .hero-eyebrow {
       display: inline-block;
-      background: rgba(199,222,255,0.15);
-      color: var(--blue-lt);
-      border: 1px solid rgba(199,222,255,0.3);
+      background: rgba(233,229,230,0.15);
+      border: 1px solid rgba(233,229,230,0.3);
       border-radius: 9999px;
-      font-size: 0.78rem;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 4px 16px;
-      margin-bottom: 20px;
+      color: var(--light);
+      margin-bottom: 18px;
     }
 
     .hero h1 {
-      font-family: 'Nunito', sans-serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: var(--blue-lt);
+      font-family: var(--font-head);
+      font-size: 35px;
+      font-weight: 400;
+      color: var(--light);
+      line-height: 1.2;
+      margin-bottom: 12px;
     }
 
     .hero p {
-      font-size: 1.05rem;
-      color: #b0b8c8;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--light);
+      opacity: 0.85;
       max-width: 560px;
-      margin: 0 auto 32px;
+      margin: 0 auto 28px;
     }
 
-    .hero-actions {
+    .hero-btns {
       display: flex;
       gap: 12px;
       justify-content: center;
@@ -135,36 +126,35 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: calc(0.667em + 2px) calc(1.333em + 2px);
+      padding: 10px 24px;
       border-radius: 9999px;
-      font-size: 0.9rem;
+      font-family: var(--font-body);
+      font-size: 14px;
       font-weight: 700;
       text-decoration: none;
-      transition: all 0.15s;
-      cursor: pointer;
       border: none;
+      cursor: pointer;
+      transition: opacity 0.15s, background 0.15s;
     }
 
     .btn-primary {
-      background: var(--blue-lt);
-      color: var(--dark);
+      background: var(--light);
+      color: var(--blue);
     }
-
-    .btn-primary:hover { background: #b0cfff; }
+    .btn-primary:hover { opacity: 0.88; }
 
     .btn-outline {
       background: transparent;
-      color: var(--white);
-      border: 1.5px solid rgba(255,255,255,0.25);
+      color: var(--light);
+      border: 1.5px solid rgba(233,229,230,0.5);
     }
-
-    .btn-outline:hover { border-color: var(--blue-lt); color: var(--blue-lt); }
+    .btn-outline:hover { border-color: var(--light); }
 
     /* ── FILTER BAR ── */
     .filter-bar {
       background: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 40px;
+      border-bottom: 1px solid #d4cfd0;
+      padding: 12px 40px;
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
@@ -172,91 +162,90 @@
     }
 
     .filter-label {
-      font-size: 0.78rem;
+      font-size: 11px;
       font-weight: 700;
-      color: var(--muted);
+      color: #888;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
       margin-right: 4px;
     }
 
     .pill {
-      background: #f1f5f9;
-      border: 1.5px solid var(--border);
+      background: var(--light);
+      border: 1.5px solid #c8c3c4;
       border-radius: 9999px;
       padding: 5px 16px;
-      font-size: 0.78rem;
+      font-family: var(--font-body);
+      font-size: 12px;
       font-weight: 700;
-      color: var(--muted);
+      color: var(--dark);
       cursor: pointer;
       transition: all 0.15s;
     }
 
-    .pill:hover { border-color: var(--accent); color: var(--accent); background: #eef4ff; }
-    .pill.active { background: var(--accent); border-color: var(--accent); color: var(--white); }
+    .pill:hover { border-color: var(--blue); color: var(--blue); background: #ddeeff; }
+    .pill.active { background: var(--blue); border-color: var(--blue); color: var(--white); }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--white);
+      padding: 8px 40px;
+      font-size: 12px;
+      color: #888;
+      border-bottom: 1px solid #d4cfd0;
+    }
+    .stats-bar span { color: var(--dark); font-weight: 700; }
 
     /* ── MAIN ── */
     main {
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 40px 40px 80px;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 24px;
+      padding: 36px 40px 80px;
     }
 
     .section-title {
-      font-family: 'Nunito', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--text);
-    }
-
-    .count-badge {
-      font-size: 0.78rem;
-      color: var(--muted);
-      font-weight: 600;
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--blue);
+      margin-bottom: 20px;
     }
 
     /* ── GRID ── */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
       gap: 20px;
     }
 
     /* ── CARD ── */
     .card {
       background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
+      border: 1px solid #d4cfd0;
+      border-radius: 4px;
       display: flex;
       flex-direction: column;
-      transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+      transition: box-shadow 0.2s, transform 0.2s;
+      overflow: hidden;
     }
 
     .card:hover {
-      box-shadow: 0 8px 28px rgba(0, 92, 153, 0.1);
-      transform: translateY(-3px);
-      border-color: #b0cfff;
+      box-shadow: 0 4px 20px rgba(0,92,153,0.12);
+      transform: translateY(-2px);
     }
 
-    .card-accent {
-      height: 5px;
-      background: var(--cat-color, var(--blue-lt));
+    /* top accent strip — category color */
+    .card-stripe {
+      height: 4px;
+      background: var(--cat-color, var(--blue));
     }
 
     .card-body {
-      padding: 22px 24px 16px;
+      padding: 20px 22px 14px;
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     .card-top {
@@ -267,66 +256,68 @@
     }
 
     .card-name {
-      font-family: 'Nunito', sans-serif;
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--text);
-      line-height: 1.3;
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--blue);
+      line-height: 1.25;
     }
 
     .tag {
-      font-size: 0.68rem;
+      font-size: 11px;
       font-weight: 700;
-      padding: 3px 9px;
+      padding: 2px 9px;
       border-radius: 9999px;
       white-space: nowrap;
       flex-shrink: 0;
+      margin-top: 3px;
     }
 
-    .tag-poc  { background: #ede9fe; color: #5b21b6; }
-    .tag-code { background: #dcfce7; color: #15803d; }
+    .tag-poc  { background: #ede9fe; color: #5b21b6; border: 1px solid #ddd6fe; }
+    .tag-code { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
 
-    .card-category {
+    .card-cat {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 0.72rem;
+      gap: 5px;
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      color: var(--cat-color, var(--accent));
+      color: var(--cat-color, var(--blue));
     }
 
     .cat-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--cat-color, var(--accent));
+      background: var(--cat-color, var(--blue));
       flex-shrink: 0;
     }
 
     .card-desc {
-      font-size: 0.85rem;
-      color: #4b5563;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--dark);
       line-height: 1.6;
       flex: 1;
     }
 
     .card-footer {
-      padding: 12px 24px 18px;
+      padding: 10px 22px 16px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      border-top: 1px solid #f1f5f9;
+      gap: 8px;
+      border-top: 1px solid #ece8e9;
     }
 
     .repo-link {
       display: flex;
       align-items: center;
       gap: 5px;
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 700;
-      color: var(--accent);
+      color: var(--blue);
       text-decoration: none;
       min-width: 0;
       flex: 1;
@@ -339,60 +330,62 @@
       white-space: nowrap;
     }
 
-    .repo-link:hover { color: var(--accent2); }
+    .repo-link:hover { color: var(--navy); text-decoration: underline; }
 
     .no-repo {
-      font-size: 0.73rem;
-      color: #d1d5db;
+      font-size: 12px;
+      color: #aaa;
       font-style: italic;
       flex: 1;
     }
 
-    .ext-link {
+    .icon-btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: #f1f5f9;
-      color: var(--muted);
+      width: 28px;
+      height: 28px;
+      border-radius: 9999px;
+      background: var(--light);
+      border: 1px solid #c8c3c4;
+      color: var(--dark);
       text-decoration: none;
       transition: all 0.15s;
       flex-shrink: 0;
     }
 
-    .ext-link:hover { background: var(--blue-lt); color: var(--dark); }
+    .icon-btn:hover { background: var(--blue); color: var(--white); border-color: var(--blue); }
 
     /* ── EMPTY ── */
     .empty {
-      grid-column: 1 / -1;
+      grid-column: 1/-1;
       text-align: center;
       padding: 60px 20px;
-      color: var(--muted);
-      font-size: 0.9rem;
+      color: #aaa;
+      font-size: 14px;
     }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--dark);
-      color: #9ca3af;
+      background: var(--navy);
+      color: var(--light);
       text-align: center;
-      padding: 28px 40px;
-      font-size: 0.82rem;
+      padding: 20px 40px;
+      font-family: var(--font-body);
+      font-size: 14px;
     }
 
-    footer a { color: var(--blue-lt); text-decoration: none; }
+    footer a { color: var(--light); }
     footer a:hover { text-decoration: underline; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .hero { padding: 48px 20px 40px; }
-      .filter-bar { padding: 12px 20px; }
-      main { padding: 28px 20px 60px; }
-      footer { padding: 24px 20px; }
+      nav { padding: 0 16px; }
       .nav-links { display: none; }
+      .hero { padding: 40px 20px 36px; }
+      .hero h1 { font-size: 28px; }
+      .filter-bar, .stats-bar { padding: 10px 16px; }
+      main { padding: 24px 16px 60px; }
     }
   </style>
 </head>
@@ -400,7 +393,7 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="https://ravionics.nl/">Ravi<span>onics</span></a>
+  <a class="nav-logo" href="https://ravionics.nl/">Ravionics</a>
   <ul class="nav-links">
     <li><a href="https://ravionics.nl/">Home</a></li>
     <li><a href="#" class="active">Projects</a></li>
@@ -411,9 +404,9 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-eyebrow">Community Update</div>
-  <h1>Work in <em>Progress</em> &amp; Showcase</h1>
-  <p>A curated view of projects exploring AI agents, MCP integrations, data science, and intelligent automation.</p>
-  <div class="hero-actions">
+  <h1>Work in Progress &amp; Showcase</h1>
+  <p>A curated view of projects exploring AI agents, MCP integrations, data science, and intelligent automation — bridging technology and practical business needs.</p>
+  <div class="hero-btns">
     <a class="btn btn-primary" href="https://ravionics.nl/">Back to Ravionics</a>
     <a class="btn btn-outline" href="https://github.com/san-work-ravionics" target="_blank" rel="noopener">GitHub Profile</a>
   </div>
@@ -421,7 +414,7 @@
 
 <!-- FILTER BAR -->
 <div class="filter-bar">
-  <span class="filter-label">Filter</span>
+  <span class="filter-label">Filter by</span>
   <button class="pill active" data-filter="all">All</button>
   <button class="pill" data-filter="ml">ML / AI</button>
   <button class="pill" data-filter="mcp">MCP</button>
@@ -430,37 +423,38 @@
   <button class="pill" data-filter="demo">Demo</button>
 </div>
 
+<!-- STATS -->
+<div class="stats-bar">
+  Showing <span id="visible-count">9</span> of 9 projects
+</div>
+
 <!-- MAIN -->
 <main>
-  <div class="section-header">
-    <span class="section-title">Featured Projects</span>
-    <span class="count-badge"><span id="visible-count">9</span> of 9</span>
-  </div>
+  <h2 class="section-title">Featured Projects</h2>
   <div class="grid" id="grid"></div>
   <div class="empty" id="empty" style="display:none">No projects match this filter.</div>
 </main>
 
 <!-- FOOTER -->
 <footer>
-  <p>&copy; 2026 <a href="https://ravionics.nl/">Ravionics</a> &nbsp;·&nbsp; contact@ravionics.nl &nbsp;·&nbsp; Built with Claude Code</p>
+  <p>Copyright &copy; <a href="https://ravionics.nl/">Ravionics</a> &nbsp;&middot;&nbsp; All rights reserved</p>
 </footer>
 
 <script>
 const CATEGORIES = {
-  ml:        { label: "ML / AI",          color: "#059669" },
-  mcp:       { label: "MCP & Integration",color: "#005c99" },
-  energy:    { label: "Energy",           color: "#ea580c" },
-  education: { label: "Education",        color: "#7c3aed" },
-  demo:      { label: "Demo / Showcase",  color: "#db2777" },
-  finance:   { label: "Finance",          color: "#d97706" },
+  ml:        { label: "ML / AI",           color: "#059669" },
+  mcp:       { label: "MCP & Integration", color: "#005c99" },
+  energy:    { label: "Energy",            color: "#e17a00" },
+  education: { label: "Education",         color: "#7c3aed" },
+  demo:      { label: "Demo / Showcase",   color: "#c0392b" },
 };
 
 const PROJECTS = [
-  // ── From CODE ─────────────────────────────────────────────
+  // ── CODE ──────────────────────────────────────────────────
   {
     name: "rita-beta-release-26",
     title: "RITA — Agentic AI (2026)",
-    description: "RITA (Risk Informed Trading Approach) — a full agentic AI system for trading built on Model Context Protocol. Combines RL, pattern recognition, and Claude-powered reasoning for Nifty 50 investment decisions.",
+    description: "RITA (Risk Informed Trading Approach) — a full agentic AI system for trading built on Model Context Protocol. Combines reinforcement learning, pattern recognition, and Claude-powered reasoning for Nifty 50 investment decisions.",
     repo: "https://github.com/sangaw/rita-beta-release-26",
     dir: "code",
     category: "mcp"
@@ -489,11 +483,11 @@ const PROJECTS = [
     dir: "code",
     category: "mcp"
   },
-  // ── From POC ──────────────────────────────────────────────
+  // ── POC ───────────────────────────────────────────────────
   {
     name: "ai-engg-samples",
     title: "AI Engineering Samples",
-    description: "Foundational neural network and deep learning implementations — a hands-on reference for core AI engineering patterns including feedforward nets, training loops, and evaluation pipelines.",
+    description: "Foundational neural network and deep learning implementations — a hands-on reference for core AI engineering patterns including feedforward networks, training loops, and evaluation pipelines.",
     repo: null,
     dir: "poc",
     category: "ml"
@@ -525,14 +519,14 @@ const PROJECTS = [
   {
     name: "thinkbridge-demo",
     title: "ThinkBridge — Innovation Platform",
-    description: "Corporate innovation platform demo for enterprise MS365 environments. Provides AI-assisted ideation, knowledge bridging, and structured recommendation workflows for digital transformation teams.",
+    description: "Corporate innovation platform demo for enterprise MS365 environments. AI-assisted ideation, knowledge bridging, and structured recommendation workflows for digital transformation teams.",
     repo: null,
     dir: "poc",
     category: "demo"
   },
 ];
 
-function githubLabel(url) {
+function repoLabel(url) {
   if (!url) return null;
   const m = url.match(/github\.com\/([^/]+\/[^/]+?)(?:\.git)?$/);
   return m ? m[1] : url.replace(/^https?:\/\//, '');
@@ -552,15 +546,15 @@ function ghIcon() {
 }
 
 function extIcon() {
-  return `<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  return `<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
     <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
   </svg>`;
 }
 
 function buildCard(p) {
-  const cat = CATEGORIES[p.category] || { label: p.category, color: "#6b7280" };
-  const label = githubLabel(p.repo);
+  const cat = CATEGORIES[p.category] || { label: p.category, color: "#005c99" };
+  const label = repoLabel(p.repo);
 
   const card = document.createElement('div');
   card.className = 'card';
@@ -568,23 +562,20 @@ function buildCard(p) {
   card.style.setProperty('--cat-color', cat.color);
 
   card.innerHTML = `
-    <div class="card-accent"></div>
+    <div class="card-stripe"></div>
     <div class="card-body">
       <div class="card-top">
         <div class="card-name">${p.title}</div>
         <span class="tag tag-${p.dir}">${p.dir.toUpperCase()}</span>
       </div>
-      <div class="card-category">
-        <span class="cat-dot"></span>${cat.label}
-      </div>
+      <div class="card-cat"><span class="cat-dot"></span>${cat.label}</div>
       <div class="card-desc">${p.description}</div>
     </div>
     <div class="card-footer">
       ${p.repo
         ? `<a class="repo-link" href="${p.repo}" target="_blank" rel="noopener">${ghIcon()}<span>${label}</span></a>
-           <a class="ext-link" href="${p.repo}" target="_blank" rel="noopener" title="Open repo">${extIcon()}</a>`
-        : `<span class="no-repo">Repository coming soon</span>`
-      }
+           <a class="icon-btn" href="${p.repo}" target="_blank" rel="noopener" title="Open repo">${extIcon()}</a>`
+        : `<span class="no-repo">Repository coming soon</span>`}
     </div>
   `;
   return card;
@@ -597,21 +588,19 @@ const countEl = document.getElementById('visible-count');
 PROJECTS.forEach(p => grid.appendChild(buildCard(p)));
 
 function updateCount() {
-  const n = grid.querySelectorAll('.card:not([style*="display: none"])').length;
+  const n = [...grid.querySelectorAll('.card')].filter(c => c.style.display !== 'none').length;
   countEl.textContent = n;
   emptyEl.style.display = n === 0 ? 'block' : 'none';
 }
 
-let active = 'all';
 document.querySelector('.filter-bar').addEventListener('click', e => {
   const pill = e.target.closest('.pill');
   if (!pill) return;
   document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
   pill.classList.add('active');
-  active = pill.dataset.filter;
+  const f = pill.dataset.filter;
   grid.querySelectorAll('.card').forEach(card => {
-    const show = active === 'all' || card.dataset.category === active;
-    card.style.display = show ? '' : 'none';
+    card.style.display = (f === 'all' || card.dataset.category === f) ? '' : 'none';
   });
   updateCount();
 });
