@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Ravionics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:    #32373c;
+      --blue-lt: #c7deff;
+      --peach:   #ffd3c0;
+      --accent:  #005c99;
+      --accent2: #1414c9;
+      --white:   #ffffff;
+      --bg:      #f5f7fa;
+      --text:    #1a1a2e;
+      --muted:   #6b7280;
+      --border:  #e5eaf2;
+      --radius:  12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--dark);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--blue-lt); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+
+    .nav-links a.active {
+      color: var(--blue-lt);
+      border-bottom: 2px solid var(--blue-lt);
+      padding-bottom: 2px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--dark);
+      padding: 64px 40px 56px;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(199,222,255,0.15);
+      color: var(--blue-lt);
+      border: 1px solid rgba(199,222,255,0.3);
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 16px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--blue-lt);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #b0b8c8;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: calc(0.667em + 2px) calc(1.333em + 2px);
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.15s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--blue-lt);
+      color: var(--dark);
+    }
+
+    .btn-primary:hover { background: #b0cfff; }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+
+    .btn-outline:hover { border-color: var(--blue-lt); color: var(--blue-lt); }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-right: 4px;
+    }
+
+    .pill {
+      background: #f1f5f9;
+      border: 1.5px solid var(--border);
+      border-radius: 9999px;
+      padding: 5px 16px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .pill:hover { border-color: var(--accent); color: var(--accent); background: #eef4ff; }
+    .pill.active { background: var(--accent); border-color: var(--accent); color: var(--white); }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 40px 80px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .count-badge {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 28px rgba(0, 92, 153, 0.1);
+      transform: translateY(-3px);
+      border-color: #b0cfff;
+    }
+
+    .card-accent {
+      height: 5px;
+      background: var(--cat-color, var(--blue-lt));
+    }
+
+    .card-body {
+      padding: 22px 24px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .card-name {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 9999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .tag-poc  { background: #ede9fe; color: #5b21b6; }
+    .tag-code { background: #dcfce7; color: #15803d; }
+
+    .card-category {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--cat-color, var(--accent));
+    }
+
+    .cat-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cat-color, var(--accent));
+      flex-shrink: 0;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: #4b5563;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-footer {
+      padding: 12px 24px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .repo-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      min-width: 0;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .repo-link span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .repo-link:hover { color: var(--accent2); }
+
+    .no-repo {
+      font-size: 0.73rem;
+      color: #d1d5db;
+      font-style: italic;
+      flex: 1;
+    }
+
+    .ext-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+
+    .ext-link:hover { background: var(--blue-lt); color: var(--dark); }
+
+    /* ── EMPTY ── */
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: #9ca3af;
+      text-align: center;
+      padding: 28px 40px;
+      font-size: 0.82rem;
+    }
+
+    footer a { color: var(--blue-lt); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .hero { padding: 48px 20px 40px; }
+      .filter-bar { padding: 12px 20px; }
+      main { padding: 28px 20px 60px; }
+      footer { padding: 24px 20px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="https://ravionics.nl/">Ravi<span>onics</span></a>
+  <ul class="nav-links">
+    <li><a href="https://ravionics.nl/">Home</a></li>
+    <li><a href="#" class="active">Projects</a></li>
+    <li><a href="mailto:contact@ravionics.nl">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Community Update</div>
+  <h1>Work in <em>Progress</em> &amp; Showcase</h1>
+  <p>A curated view of projects exploring AI agents, MCP integrations, data science, and intelligent automation.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="https://ravionics.nl/">Back to Ravionics</a>
+    <a class="btn btn-outline" href="https://github.com/san-work-ravionics" target="_blank" rel="noopener">GitHub Profile</a>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <span class="filter-label">Filter</span>
+  <button class="pill active" data-filter="all">All</button>
+  <button class="pill" data-filter="ml">ML / AI</button>
+  <button class="pill" data-filter="mcp">MCP</button>
+  <button class="pill" data-filter="energy">Energy</button>
+  <button class="pill" data-filter="education">Education</button>
+  <button class="pill" data-filter="demo">Demo</button>
+</div>
+
+<!-- MAIN -->
+<main>
+  <div class="section-header">
+    <span class="section-title">Featured Projects</span>
+    <span class="count-badge"><span id="visible-count">9</span> of 9</span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" style="display:none">No projects match this filter.</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 <a href="https://ravionics.nl/">Ravionics</a> &nbsp;·&nbsp; contact@ravionics.nl &nbsp;·&nbsp; Built with Claude Code</p>
+</footer>
+
+<script>
+const CATEGORIES = {
+  ml:        { label: "ML / AI",          color: "#059669" },
+  mcp:       { label: "MCP & Integration",color: "#005c99" },
+  energy:    { label: "Energy",           color: "#ea580c" },
+  education: { label: "Education",        color: "#7c3aed" },
+  demo:      { label: "Demo / Showcase",  color: "#db2777" },
+  finance:   { label: "Finance",          color: "#d97706" },
+};
+
+const PROJECTS = [
+  // ── From CODE ─────────────────────────────────────────────
+  {
+    name: "rita-beta-release-26",
+    title: "RITA — Agentic AI (2026)",
+    description: "RITA (Risk Informed Trading Approach) — a full agentic AI system for trading built on Model Context Protocol. Combines RL, pattern recognition, and Claude-powered reasoning for Nifty 50 investment decisions.",
+    repo: "https://github.com/sangaw/rita-beta-release-26",
+    dir: "code",
+    category: "mcp"
+  },
+  {
+    name: "enexis",
+    title: "Enexis — Energy Data Science",
+    description: "Data science models and pipeline for the energy sector. Covers demand forecasting, grid analytics, and infrastructure modelling for a Netherlands-based energy network operator.",
+    repo: "https://github.com/sangaw/enexis-data-science-models",
+    dir: "code",
+    category: "energy"
+  },
+  {
+    name: "poc-crew-ai",
+    title: "CrewAI — Multi-Agent POC",
+    description: "Proof-of-concept multi-agent orchestration system using CrewAI. Demonstrates collaborative AI agents working on research, analysis, and content tasks with role-based specialisation.",
+    repo: "https://github.com/sangaw/poc-crew-ai",
+    dir: "code",
+    category: "ml"
+  },
+  {
+    name: "knowledge-work-plugins",
+    title: "Knowledge Work Plugins",
+    description: "Plugins that transform Claude into domain specialists via Claude Cowork. Bundles skills, connectors, and slash commands for bio-research, finance, legal, marketing, and enterprise search roles.",
+    repo: "https://github.com/anthropics/knowledge-work-plugins",
+    dir: "code",
+    category: "mcp"
+  },
+  // ── From POC ──────────────────────────────────────────────
+  {
+    name: "ai-engg-samples",
+    title: "AI Engineering Samples",
+    description: "Foundational neural network and deep learning implementations — a hands-on reference for core AI engineering patterns including feedforward nets, training loops, and evaluation pipelines.",
+    repo: null,
+    dir: "poc",
+    category: "ml"
+  },
+  {
+    name: "arch-reference-cowork",
+    title: "Cloud Architecture Co-Work",
+    description: "MCP co-work demo for cloud architecture SLA assessment. Reads a Bill of Materials, scores components against SLA targets, assigns service tiers, and auto-generates DOCX/PPTX reports via Claude.",
+    repo: null,
+    dir: "poc",
+    category: "mcp"
+  },
+  {
+    name: "claude-edutech-demo",
+    title: "Claude EduTech Demo",
+    description: "Education technology demonstration powered by Claude. Showcases AI-assisted learning flows, adaptive content delivery, and interactive educational page components.",
+    repo: null,
+    dir: "poc",
+    category: "education"
+  },
+  {
+    name: "llm-monitoring-cluade",
+    title: "LLM Monitoring with Claude",
+    description: "Observability and monitoring workflows for LLM deployments. Integrates Claude for intelligent log analysis, anomaly flagging, and structured reporting on model performance and usage.",
+    repo: null,
+    dir: "poc",
+    category: "ml"
+  },
+  {
+    name: "thinkbridge-demo",
+    title: "ThinkBridge — Innovation Platform",
+    description: "Corporate innovation platform demo for enterprise MS365 environments. Provides AI-assisted ideation, knowledge bridging, and structured recommendation workflows for digital transformation teams.",
+    repo: null,
+    dir: "poc",
+    category: "demo"
+  },
+];
+
+function githubLabel(url) {
+  if (!url) return null;
+  const m = url.match(/github\.com\/([^/]+\/[^/]+?)(?:\.git)?$/);
+  return m ? m[1] : url.replace(/^https?:\/\//, '');
+}
+
+function ghIcon() {
+  return `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0">
+    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57
+    0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695
+    -.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99
+    .105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225
+    -.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405
+    c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225
+    0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3
+    0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+  </svg>`;
+}
+
+function extIcon() {
+  return `<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+    <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+  </svg>`;
+}
+
+function buildCard(p) {
+  const cat = CATEGORIES[p.category] || { label: p.category, color: "#6b7280" };
+  const label = githubLabel(p.repo);
+
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.category = p.category;
+  card.style.setProperty('--cat-color', cat.color);
+
+  card.innerHTML = `
+    <div class="card-accent"></div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="card-name">${p.title}</div>
+        <span class="tag tag-${p.dir}">${p.dir.toUpperCase()}</span>
+      </div>
+      <div class="card-category">
+        <span class="cat-dot"></span>${cat.label}
+      </div>
+      <div class="card-desc">${p.description}</div>
+    </div>
+    <div class="card-footer">
+      ${p.repo
+        ? `<a class="repo-link" href="${p.repo}" target="_blank" rel="noopener">${ghIcon()}<span>${label}</span></a>
+           <a class="ext-link" href="${p.repo}" target="_blank" rel="noopener" title="Open repo">${extIcon()}</a>`
+        : `<span class="no-repo">Repository coming soon</span>`
+      }
+    </div>
+  `;
+  return card;
+}
+
+const grid = document.getElementById('grid');
+const emptyEl = document.getElementById('empty');
+const countEl = document.getElementById('visible-count');
+
+PROJECTS.forEach(p => grid.appendChild(buildCard(p)));
+
+function updateCount() {
+  const n = grid.querySelectorAll('.card:not([style*="display: none"])').length;
+  countEl.textContent = n;
+  emptyEl.style.display = n === 0 ? 'block' : 'none';
+}
+
+let active = 'all';
+document.querySelector('.filter-bar').addEventListener('click', e => {
+  const pill = e.target.closest('.pill');
+  if (!pill) return;
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  pill.classList.add('active');
+  active = pill.dataset.filter;
+  grid.querySelectorAll('.card').forEach(card => {
+    const show = active === 'all' || card.dataset.category === active;
+    card.style.display = show ? '' : 'none';
+  });
+  updateCount();
+});
+
+updateCount();
+</script>
+</body>
+</html>
